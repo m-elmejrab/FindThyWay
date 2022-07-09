@@ -7,14 +7,15 @@ public class PlayerEnergy : MonoBehaviour
 {
     [SerializeField] int energy;
     [SerializeField] int reincarnations;
+    [SerializeField] int beaconEnergyConsumption;
 
     int originalEnergy;
     void Start()
     {
         GetComponent<PlayerMovement>().PlayerMoved += HandleMovement;
-        UIManager.instance.UpdateEnergy(energy);
+        //UIManager.instance.UpdateEnergy(energy);
         originalEnergy = energy;
-        UIManager.instance.UpdateReincarnation(reincarnations);
+        //UIManager.instance.UpdateReincarnation(reincarnations);
     }
 
     private void HandleMovement()
@@ -26,9 +27,9 @@ public class PlayerEnergy : MonoBehaviour
 
     private void CheckGameOver()
     {
-        if(energy<=0)
+        if (energy <= 0)
         {
-            if(reincarnations>0)
+            if (reincarnations > 0)
             {
                 GameManager.instance.EnergyDepleted();
             }
@@ -45,5 +46,31 @@ public class PlayerEnergy : MonoBehaviour
         energy = originalEnergy;
         UIManager.instance.UpdateReincarnation(reincarnations);
         UIManager.instance.UpdateEnergy(energy);
+    }
+
+    public bool BeaconCreated()
+    {
+        if (energy > beaconEnergyConsumption)
+        {
+            energy -= beaconEnergyConsumption;
+            UIManager.instance.UpdateEnergy(energy);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
+
+    public int GetEnergy()
+    {
+        return energy;
+    }
+
+    public int GetReincarnations()
+    {
+        return reincarnations;
     }
 }

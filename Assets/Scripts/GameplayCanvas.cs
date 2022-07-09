@@ -10,6 +10,8 @@ public class GameplayCanvas : MonoBehaviour
 
     [SerializeField] Text reincarnationText;
 
+    [SerializeField] GameObject tutorialPrefab;
+
     public void UpdateEnergyText(int energy)
     {
         energyText.text = energy.ToString();
@@ -18,6 +20,19 @@ public class GameplayCanvas : MonoBehaviour
     public void UpdateReincarnationText(int reinc)
     {
         reincarnationText.text = reinc.ToString();
+    }
+
+    public void DisplayTutorial()
+    {
+        tutorialPrefab.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void HideTutorial()
+    {
+        tutorialPrefab.SetActive(false);
+        Time.timeScale = 1f;
+
     }
 
 }

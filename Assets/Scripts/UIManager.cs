@@ -5,16 +5,28 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    [SerializeField] GameplayCanvas canvas;
+    [SerializeField] GameObject gPlayCanvasPrefab;
+    GameplayCanvas gPlayCanvas;
 
     public void UpdateEnergy(int energy)
     {
-        canvas.UpdateEnergyText(energy);
+        gPlayCanvas.UpdateEnergyText(energy);
     }
 
     public void UpdateReincarnation(int reinca)
     {
-        canvas.UpdateReincarnationText(reinca);
+        gPlayCanvas.UpdateReincarnationText(reinca);
+    }
+
+    public void DisplayGameplayCanvas()
+    {
+        GameObject cObject = Instantiate(gPlayCanvasPrefab);
+        gPlayCanvas = cObject.GetComponent<GameplayCanvas>();
+    }
+
+    public void DisplayTutorial()
+    {
+        gPlayCanvas.DisplayTutorial();
     }
     
 }
