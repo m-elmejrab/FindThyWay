@@ -10,10 +10,25 @@ public class GameManager : Singleton<GameManager>
     PlayerEnergy energyScript;
     bool firstLoadEver = true;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start() {
+        SoundManager.instance.PlayMainMenuMusic();
+    }
+    private void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (Time.timeScale == 0)
+            {
+                UIManager.instance.HidePauseMenu();
+                SoundManager.instance.PauseResumeMusic(true);
+
+            }
+            else
+            {
+                UIManager.instance.DisplayPauseMenu();
+                SoundManager.instance.PauseResumeMusic(false);
+            }
+        }
     }
 
     public void EnergyDepleted()
@@ -25,16 +40,27 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
 
-        Debug.Log("YOUUUUU LOOOOOOST");
+        UIManager.instance.DisplayLossMessage();
+        SoundManager.instance.PlayWinOrLose(false);
     }
 
     public void LoadLevel(int index)
     {
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1f;
+        }
+
         SceneManager.LoadScene(index);
 
-        if(index == 1)
+        if (index != 0)
         {
             StartCoroutine(LinkObjectAfterLoad());
+            SoundManager.instance.PlayLevelMusic();
+        }
+        else
+        {
+            SoundManager.instance.PlayMainMenuMusic();
         }
     }
 
@@ -45,10 +71,10 @@ public class GameManager : Singleton<GameManager>
         player = GameObject.FindGameObjectWithTag("Player");
         movementScript = player.GetComponent<PlayerMovement>();
         energyScript = player.GetComponent<PlayerEnergy>();
-        UIManager.instance.DisplayGameplayCanvas();
+        UIManager.instance.DisplayGameplayCanvas(SceneManager.GetActiveScene().buildIndex);
         UIManager.instance.UpdateEnergy(energyScript.GetEnergy());
         UIManager.instance.UpdateReincarnation(energyScript.GetReincarnations());
-        if(firstLoadEver)
+        if (firstLoadEver)
         {
             firstLoadEver = false;
             UIManager.instance.DisplayTutorial();
@@ -56,4 +82,23 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+    public void GameWon()
+    {
+        UIManager.instance.DisplayWinMessage();
+        SoundManager.instance.PlayWinOrLose(true);
+
+    }
+
+    public void RestartLevel()
+    {
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1f;
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        StartCoroutine(LinkObjectAfterLoad());
+        SoundManager.instance.PlayLevelMusic();
+    }
 }

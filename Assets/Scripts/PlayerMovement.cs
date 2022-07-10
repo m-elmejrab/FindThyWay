@@ -29,10 +29,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Vector2.Distance(transform.position, movePoint.transform.position) <= 0.01f)
         {
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Time.timeScale !=0)
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Time.timeScale != 0)
             {
                 if (CanMove(movePoint.transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f)))
                 {
+                    SoundManager.instance.PlayFootsteps();
                     movePoint.transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
                     if (Input.GetAxisRaw("Horizontal") == -1)
                         anim.SetTrigger("left");
@@ -41,11 +42,13 @@ public class PlayerMovement : MonoBehaviour
 
                 }
             }
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && Time.timeScale !=0)
+            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && Time.timeScale != 0)
             {
 
                 if (CanMove(movePoint.transform.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f)))
                 {
+                    SoundManager.instance.PlayFootsteps();
+
                     movePoint.transform.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
                     if (Input.GetAxisRaw("Vertical") == -1)
                         anim.SetTrigger("down");

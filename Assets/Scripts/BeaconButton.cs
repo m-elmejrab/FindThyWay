@@ -20,7 +20,7 @@ public class BeaconButton : MonoBehaviour
     void SetBeacon()
     {
         Debug.Log($"SET Beacon click in button => {gameObject.name}");
-
+        SoundManager.instance.PlayClickSound();
         Clicked?.Invoke(beaconPrefab, gameObject.name);
     }
 

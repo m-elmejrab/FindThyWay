@@ -54,6 +54,7 @@ public class PlayerEnergy : MonoBehaviour
         {
             energy -= beaconEnergyConsumption;
             UIManager.instance.UpdateEnergy(energy);
+            SoundManager.instance.PlayOrbCreationSound();
             return true;
         }
         else

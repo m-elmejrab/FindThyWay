@@ -16,8 +16,10 @@ public class QuitButton : MonoBehaviour
 
     private void QuitButtonClicked()
     {
+        SoundManager.instance.PlayClickSound();
+
         Application.Quit();
     }
 
-    
+
 }
