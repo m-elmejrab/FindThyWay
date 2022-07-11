@@ -360,7 +360,7 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: 7018f0415f6cb494881ac51f9edc0969, type: 3}
   footsteps: {fileID: 8300000, guid: df619e3c9e61a5445bd1da01daf22606, type: 3}
   orbCreation: {fileID: 8300000, guid: a9e8a59c43cbeec4fb2dd57e02d6e4cf, type: 3}
-  winSound: {fileID: 8300000, guid: 112c7d1ebcf19144bb8262d0280a87d6, type: 3}
+  winSound: {fileID: 8300000, guid: 81097d8819708e3489f34ad98a9af6be, type: 3}
   lossSound: {fileID: 8300000, guid: 8546512c18309fc48bb0436d08b56de0, type: 3}
   mainMenuMusic: {fileID: 8300000, guid: 01d2e54e8bc814942a4bcff4bbf73b29, type: 3}
   gameplayMusic: {fileID: 8300000, guid: 31d51a515e553e449a9347a2eec0de89, type: 3}
