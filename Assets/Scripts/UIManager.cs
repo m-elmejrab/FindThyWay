@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : Singleton<UIManager> // Singleton class responsible for UI elements
 {
-    [SerializeField] GameObject easyLevelCanvas;
-    [SerializeField] GameObject mediumLevelCanvas;
-    [SerializeField] GameObject hardLevelCanvas;
+    [SerializeField] GameObject easyLevelCanvas; //prefab for easy level
+    [SerializeField] GameObject mediumLevelCanvas; //prefab for medium level
+    [SerializeField] GameObject hardLevelCanvas; //prefab for hard level
 
     GameplayCanvas gPlayCanvas;
 
@@ -21,6 +21,9 @@ public class UIManager : Singleton<UIManager>
         gPlayCanvas.UpdateReincarnationText(reinca);
     }
 
+    /// <summary>
+    /// Displays correct canvas based on selected difficulty
+    /// </summary>
     public void DisplayGameplayCanvas(int difficulty)
     {
         switch (difficulty)

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GameplayCanvas : MonoBehaviour
+public class GameplayCanvas : MonoBehaviour //Class controlling UI elements during gameplay
 {
     [SerializeField] Text energyText;
 
@@ -21,16 +21,25 @@ public class GameplayCanvas : MonoBehaviour
     [SerializeField] GameObject helpButton;
 
 
+    /// <summary>
+    /// Display current level of energy
+    /// </summary>
     public void UpdateEnergyText(int energy)
     {
         energyText.text = energy.ToString();
     }
 
+    /// <summary>
+    /// Display remaining lives
+    /// </summary>
     public void UpdateReincarnationText(int reinc)
     {
         reincarnationText.text = reinc.ToString();
     }
 
+    /// <summary>
+    /// Display Tutorial on first playthrough or when help is pressed
+    /// </summary>
     public void DisplayTutorial()
     {
         SoundManager.instance.PlayClickSound();
@@ -38,15 +47,20 @@ public class GameplayCanvas : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    /// <summary>
+    /// Hide tutorial screen
+    /// </summary>
     public void HideTutorial()
     {
         SoundManager.instance.PlayClickSound();
 
         tutorialPrefab.SetActive(false);
         Time.timeScale = 1f;
-
     }
 
+    /// <summary>
+    /// Display win message when level is completed
+    /// </summary>
     public void ShowWinMessage()
     {
         winMessage.SetActive(true);
@@ -55,6 +69,10 @@ public class GameplayCanvas : MonoBehaviour
 
 
     }
+
+    /// <summary>
+    /// Display loss message when player runs out of lives
+    /// </summary>
     public void ShowLossMessage()
     {
         lossMessage.SetActive(true);
@@ -63,6 +81,9 @@ public class GameplayCanvas : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    /// <summary>
+    /// Display the pause menu
+    /// </summary>
     public void ShowPauseMenu()
     {
         pauseMenu.SetActive(true);
@@ -72,6 +93,9 @@ public class GameplayCanvas : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Hides the pause menu
+    /// </summary>
     public void HidePauseMenu()
     {
         SoundManager.instance.PlayClickSound();

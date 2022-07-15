@@ -6,14 +6,13 @@ public class BeaconSelector : MonoBehaviour
 {
     [SerializeField] List<BeaconButton> beaconButtons;
     BeaconCreator playerBeaconCreator;
-    // Start is called before the first frame update
 
     void Start()
     {
         playerBeaconCreator = GameObject.FindGameObjectWithTag("Player").GetComponent<BeaconCreator>();
         foreach (BeaconButton button in beaconButtons)
         {
-            button.Clicked += UpdateBeacon;
+            button.Clicked += UpdateBeacon; //subscribe to buttons that correspond to different beacon types
         }
 
         UpdateBeacon(beaconButtons[0].GetBeaconObject(), beaconButtons[0].gameObject.name);
@@ -21,7 +20,9 @@ public class BeaconSelector : MonoBehaviour
 
  
 
-
+    /// <summary>
+    /// Update the beacon type in the player script, resize beacon buttons accordingly
+    /// </summary>
     void UpdateBeacon(GameObject beaconPrefab, string bName)
     {
         playerBeaconCreator.SetNewBeacon(beaconPrefab);

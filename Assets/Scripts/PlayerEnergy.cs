@@ -13,13 +13,12 @@ public class PlayerEnergy : MonoBehaviour
     void Start()
     {
         GetComponent<PlayerMovement>().PlayerMoved += HandleMovement;
-        //UIManager.instance.UpdateEnergy(energy);
         originalEnergy = energy;
-        //UIManager.instance.UpdateReincarnation(reincarnations);
     }
 
     private void HandleMovement()
     {
+        //Reduce energy when walking, check for game over
         energy--;
         UIManager.instance.UpdateEnergy(energy);
         CheckGameOver();
@@ -40,6 +39,9 @@ public class PlayerEnergy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets energy to initial value after respawning
+    /// </summary>
     public void ResetEnergy()
     {
         reincarnations--;
@@ -48,6 +50,9 @@ public class PlayerEnergy : MonoBehaviour
         UIManager.instance.UpdateEnergy(energy);
     }
 
+    /// <summary>
+    /// Returns true if enough energy available to create beacon
+    /// </summary>
     public bool BeaconCreated()
     {
         if (energy > beaconEnergyConsumption)

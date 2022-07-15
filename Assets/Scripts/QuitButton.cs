@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuitButton : MonoBehaviour
+public class QuitButton : MonoBehaviour //Quits the game from UI
 {
     Button myButton;
-    // Start is called before the first frame update
     void Start()
     {
         myButton = GetComponent<Button>();

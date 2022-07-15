@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadLevelButton : MonoBehaviour
+public class LoadLevelButton : MonoBehaviour //Loads a certain level from UI selection
 {
     [SerializeField] int levelToLoadIndex;
     Button myButton;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         myButton = GetComponent<Button>();
@@ -18,7 +19,6 @@ public class LoadLevelButton : MonoBehaviour
     private void LoadLevelClicked()
     {
         SoundManager.instance.PlayClickSound();
-
         GameManager.instance.LoadLevel(levelToLoadIndex);
     }
 

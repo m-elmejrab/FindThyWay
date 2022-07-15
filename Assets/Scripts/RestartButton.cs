@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RestartButton : MonoBehaviour
+public class RestartButton : MonoBehaviour  // Restarts level from UI
 {
     Button myButton;
-    // Start is called before the first frame update
+
     void Start()
     {
         myButton = GetComponent<Button>();

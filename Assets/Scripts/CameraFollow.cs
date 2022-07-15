@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] GameObject player;
     
 
-    // Update is called once per frame
+    // Camera follows the position of the player each frame
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z );

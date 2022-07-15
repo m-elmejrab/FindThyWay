@@ -9,9 +9,9 @@ public class BeaconButton : MonoBehaviour
     public event Action<GameObject, string> Clicked;
     [SerializeField] GameObject beaconPrefab;
 
-    private int smallSize = 25;
-    private int bigSize = 50;
-    // Start is called before the first frame update
+    private int smallSize = 25; //size of icon when not selected
+    private int bigSize = 50; //size of icon when  selected to use
+
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(SetBeacon);
@@ -19,7 +19,6 @@ public class BeaconButton : MonoBehaviour
 
     void SetBeacon()
     {
-        Debug.Log($"SET Beacon click in button => {gameObject.name}");
         SoundManager.instance.PlayClickSound();
         Clicked?.Invoke(beaconPrefab, gameObject.name);
     }
@@ -36,7 +35,7 @@ public class BeaconButton : MonoBehaviour
         }
     }
 
-    public GameObject GetBeaconObject()
+    public GameObject GetBeaconObject() //returns the beacon object that should be created 
     {
         return beaconPrefab;
     }

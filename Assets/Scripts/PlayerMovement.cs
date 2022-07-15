@@ -15,26 +15,27 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 originalPosition;
     Animator anim;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         originalPosition = transform.position;
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, movePoint.transform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, movePoint.transform.position, moveSpeed * Time.deltaTime); //Move towards the move point
 
-        if (Vector2.Distance(transform.position, movePoint.transform.position) <= 0.01f)
+        if (Vector2.Distance(transform.position, movePoint.transform.position) <= 0.01f) //checks if player arrived at the tile
         {
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Time.timeScale != 0)
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 && Time.timeScale != 0) //Gets horizontal input and checks if game is not paused
             {
-                if (CanMove(movePoint.transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f)))
+                if (CanMove(movePoint.transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f))) //checks if player can move in the direction, starts animation and sounds
                 {
                     SoundManager.instance.PlayFootsteps();
                     movePoint.transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+
                     if (Input.GetAxisRaw("Horizontal") == -1)
                         anim.SetTrigger("left");
                     else
@@ -42,14 +43,13 @@ public class PlayerMovement : MonoBehaviour
 
                 }
             }
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && Time.timeScale != 0)
+            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 && Time.timeScale != 0) //Gets vertical input and checks if game is not paused
             {
-
-                if (CanMove(movePoint.transform.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f)))
+                if (CanMove(movePoint.transform.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f))) //checks if player can move in the direction, starts animation and sounds
                 {
                     SoundManager.instance.PlayFootsteps();
-
                     movePoint.transform.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+
                     if (Input.GetAxisRaw("Vertical") == -1)
                         anim.SetTrigger("down");
                     else
@@ -65,6 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Checks if player can move in the pressed button direction
+    /// </summary>
     private bool CanMove(Vector3 point)
     {
 
@@ -79,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets position when spawning
+    /// </summary>
     public void ResetPosition()
     {
         transform.position = originalPosition;
