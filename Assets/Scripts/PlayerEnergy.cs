@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEnergy : MonoBehaviour
@@ -18,7 +15,6 @@ public class PlayerEnergy : MonoBehaviour
 
     private void HandleMovement()
     {
-        //Reduce energy when walking, check for game over
         energy--;
         UIManager.instance.UpdateEnergy(energy);
         CheckGameOver();
@@ -39,9 +35,6 @@ public class PlayerEnergy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Resets energy to initial value after respawning
-    /// </summary>
     public void ResetEnergy()
     {
         reincarnations--;
@@ -50,9 +43,6 @@ public class PlayerEnergy : MonoBehaviour
         UIManager.instance.UpdateEnergy(energy);
     }
 
-    /// <summary>
-    /// Returns true if enough energy available to create beacon
-    /// </summary>
     public bool BeaconCreated()
     {
         if (energy > beaconEnergyConsumption)
@@ -66,16 +56,14 @@ public class PlayerEnergy : MonoBehaviour
         {
             return false;
         }
-
-
     }
 
-    public int GetEnergy()
+    public int GetEnergyRemaining()
     {
         return energy;
     }
 
-    public int GetReincarnations()
+    public int GetLivesRemaining()
     {
         return reincarnations;
     }

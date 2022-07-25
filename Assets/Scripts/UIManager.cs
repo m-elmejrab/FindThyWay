@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager> // Singleton class responsible for UI elements
 {
@@ -9,38 +6,35 @@ public class UIManager : Singleton<UIManager> // Singleton class responsible for
     [SerializeField] GameObject mediumLevelCanvas; //prefab for medium level
     [SerializeField] GameObject hardLevelCanvas; //prefab for hard level
 
-    GameplayCanvas gPlayCanvas;
+    GameplayCanvas gamePlayCanvas;
 
     public void UpdateEnergy(int energy)
     {
-        gPlayCanvas.UpdateEnergyText(energy);
+        gamePlayCanvas.UpdateEnergyText(energy);
     }
 
     public void UpdateReincarnation(int reinca)
     {
-        gPlayCanvas.UpdateReincarnationText(reinca);
+        gamePlayCanvas.UpdateRemainingLivesText(reinca);
     }
 
-    /// <summary>
-    /// Displays correct canvas based on selected difficulty
-    /// </summary>
     public void DisplayGameplayCanvas(int difficulty)
     {
         switch (difficulty)
         {
             case 1:
                 GameObject cObject = Instantiate(easyLevelCanvas);
-                gPlayCanvas = cObject.GetComponent<GameplayCanvas>();
+                gamePlayCanvas = cObject.GetComponent<GameplayCanvas>();
                 break;
 
             case 2:
                 GameObject cObject2 = Instantiate(mediumLevelCanvas);
-                gPlayCanvas = cObject2.GetComponent<GameplayCanvas>();
+                gamePlayCanvas = cObject2.GetComponent<GameplayCanvas>();
                 break;
 
             case 3:
                 GameObject cObject3 = Instantiate(hardLevelCanvas);
-                gPlayCanvas = cObject3.GetComponent<GameplayCanvas>();
+                gamePlayCanvas = cObject3.GetComponent<GameplayCanvas>();
                 break;
             default:
                 break;
@@ -50,27 +44,26 @@ public class UIManager : Singleton<UIManager> // Singleton class responsible for
 
     public void DisplayTutorial()
     {
-        gPlayCanvas.DisplayTutorial();
+        gamePlayCanvas.DisplayTutorial();
     }
 
     public void DisplayWinMessage()
     {
-        gPlayCanvas.ShowWinMessage();
+        gamePlayCanvas.ShowWinMessage();
     }
 
     public void DisplayLossMessage()
     {
-        gPlayCanvas.ShowLossMessage();
+        gamePlayCanvas.ShowLossMessage();
     }
 
     public void DisplayPauseMenu()
     {
-        gPlayCanvas.ShowPauseMenu();
+        gamePlayCanvas.ShowPauseMenu();
     }
 
     public void HidePauseMenu()
     {
-        gPlayCanvas.HidePauseMenu();
+        gamePlayCanvas.HidePauseMenu();
     }
-
 }

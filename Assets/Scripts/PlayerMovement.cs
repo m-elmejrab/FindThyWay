@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
@@ -12,10 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask walls;
     [SerializeField] Tilemap ground;
     [SerializeField] Tilemap obstacles;
-
     Vector3 originalPosition;
     Animator anim;
-
 
     void Start()
     {
@@ -60,17 +56,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 anim.SetTrigger("idle");
             }
-
         }
-
     }
 
-    /// <summary>
-    /// Checks if player can move in the pressed button direction
-    /// </summary>
     private bool CanMove(Vector3 point)
     {
-
         if (!Physics2D.OverlapCircle(point, 0.4f, walls))
         {
             PlayerMoved?.Invoke();
@@ -82,9 +72,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Resets position when spawning
-    /// </summary>
     public void ResetPosition()
     {
         transform.position = originalPosition;

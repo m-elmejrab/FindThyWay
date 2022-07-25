@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,17 +11,12 @@ public class BeaconSelector : MonoBehaviour
         playerBeaconCreator = GameObject.FindGameObjectWithTag("Player").GetComponent<BeaconCreator>();
         foreach (BeaconButton button in beaconButtons)
         {
-            button.Clicked += UpdateBeacon; //subscribe to buttons that correspond to different beacon types
+            button.Clicked += UpdateBeacon; 
         }
 
         UpdateBeacon(beaconButtons[0].GetBeaconObject(), beaconButtons[0].gameObject.name);
     }
 
- 
-
-    /// <summary>
-    /// Update the beacon type in the player script, resize beacon buttons accordingly
-    /// </summary>
     void UpdateBeacon(GameObject beaconPrefab, string bName)
     {
         playerBeaconCreator.SetNewBeacon(beaconPrefab);
@@ -36,7 +30,6 @@ public class BeaconSelector : MonoBehaviour
             else
             {
                 button.SetSize(false);
-
             }
         }
     }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +5,6 @@ public class LoadLevelButton : MonoBehaviour //Loads a certain level from UI sel
 {
     [SerializeField] int levelToLoadIndex;
     Button myButton;
-
 
     void Start()
     {

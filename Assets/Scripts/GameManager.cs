@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     {
         SoundManager.instance.PlayMainMenuMusic();
     }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0) // checks if the player is on a maze scene i.e. not on main menu
@@ -46,7 +46,6 @@ public class GameManager : Singleton<GameManager>
     /// </summary>
     public void GameOver()
     {
-
         UIManager.instance.DisplayLossMessage();
         SoundManager.instance.PlayWinOrLose(false);
     }
@@ -85,8 +84,8 @@ public class GameManager : Singleton<GameManager>
 
         //Display UI elements
         UIManager.instance.DisplayGameplayCanvas(SceneManager.GetActiveScene().buildIndex);
-        UIManager.instance.UpdateEnergy(energyScript.GetEnergy());
-        UIManager.instance.UpdateReincarnation(energyScript.GetReincarnations());
+        UIManager.instance.UpdateEnergy(energyScript.GetEnergyRemaining());
+        UIManager.instance.UpdateReincarnation(energyScript.GetLivesRemaining());
 
         //Shows the tutorial when playing for the first time
         if (firstLoadEver)
@@ -94,7 +93,6 @@ public class GameManager : Singleton<GameManager>
             firstLoadEver = false;
             UIManager.instance.DisplayTutorial();
         }
-
     }
 
     /// <summary>

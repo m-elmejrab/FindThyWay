@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +14,6 @@ public class RestartButton : MonoBehaviour  // Restarts level from UI
     private void RestartLevelClicked()
     {
         SoundManager.instance.PlayClickSound();
-
         GameManager.instance.RestartLevel();
     }
 }
